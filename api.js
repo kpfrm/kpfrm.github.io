@@ -7,13 +7,17 @@ var KEYPAY = {};
 		callbacks = [],
 		/**Options|{}*/opts = {},
 		demoTitles = [],
-		frame, isFrameListening, isPaid, trial;
+		frame, isFrameListening, isPaid, trial, sign;
 
 	KEYPAY.init = function (/**Options*/ options) {
 		validate(opts, options);
 		opts = options;
 
-		sendStart();
+		if (sign) {
+			trackStart()
+		} else {
+			getSign().then(trackStart)
+		}
 
 		var played = 0, prevTime = 0, reportProgress = PROGRESS_STEP, isCredited, was10s;
 		opts.videoElement.addEventListener('timeupdate', function () {
@@ -84,7 +88,19 @@ var KEYPAY = {};
 		}
 	}
 
-	function sendStart() {
+	function getSign() {
+		setTimeout(getSign, 1000 * 60 * 60);
+		return fetch(
+			'https://api.keypay.biz/stat/hash',
+			{ credentials: "include" }
+		).then(function (r) {
+			return r.json()
+		}).then(function (r) {
+			sign = '&hash=' + r.hash + '&time=' + r.time
+		})
+	}
+
+	function trackStart() {
 		if (opts.videoElement.paused) {
 			opts.videoElement.addEventListener('playing', function h() {
 				sendProgress(0);
@@ -96,12 +112,12 @@ var KEYPAY = {};
 	}
 
 	function sendProgress(p, cb) {
-		if (!uid) return;
-		var url = 'https://sttsnd.club/?wmid=' + opts.clientId +
-			'&uid=' + uid +
+		if (!uid || !sign) return;
+		var url = 'https://sttsnd.club/?progress=' + p +
 			'&title=' + opts.title +
 			'&duration=' + Math.round(opts.videoElement.duration) +
-			'&progress=' + p +
+			'&wmid=' + opts.clientId +
+			'&uid=' + uid + sign +
 			'&domain=' + opts.domain;
 		if (trial || ~demoTitles.indexOf(opts.title)) url += '&trial=1';
 		if (opts.custom) url += '&custom=' + opts.custom;
