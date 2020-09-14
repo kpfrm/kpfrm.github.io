@@ -1,0 +1,18 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = tab
+ij_smart_tabs = true
+ij_continuation_indent_size = 4
+trim_trailing_whitespace = true
+insert_final_newline = false
+
+[*.js]
+ij_javascript_spaces_within_imports = true
+ij_javascript_spaces_within_object_literal_braces = true
+
+[*.md]
+max_line_length = 0
+trim_trailing_whitespace = false
