@@ -64,6 +64,13 @@ var KEYPAY = {};
 	KEYPAY.initPlus = function (title) {
 		opts.title = title;
 		getAuth(title);
+		if (!isFrameListening && window.BroadcastChannel) {
+			var f = document.createElement('iframe');
+			f.src = ORIGIN + '/plus.html';
+			document.body.appendChild(f);
+			addEventListener('message', messageListener);
+			isFrameListening = true;
+		}
 	};
 
 	KEYPAY.isPaid = function (title, cb) {
@@ -169,7 +176,7 @@ var KEYPAY = {};
 	}
 
 	function messageListener(/**MessageEvent*/ e) {
-		if (e.origin !== ORIGIN) return;
+		if (e.origin !== ORIGIN || !e.data) return;
 		if ('close' === e.data.event) {
 			if (frame) frame.style.display = 'none';
 			return;

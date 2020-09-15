@@ -19,12 +19,14 @@
 <script>
 	var API_URL = 'https://api.keypay.biz',
 		API_AUTH = API_URL + '/auth',
+		broadcastChannel,
 		email,
 		callAfterFeedback;
 
 	identity();
 	if (window.BroadcastChannel) {
-		new BroadcastChannel('').onmessage = function (e) {
+		broadcastChannel = new BroadcastChannel('');
+		broadcastChannel.onmessage = function (e) {
 			if (e.data === 'auth') identity();
 		}
 	}
@@ -39,7 +41,7 @@
 				var endTime = res.user["premium_time"];
 				if (endTime) {
 					show(viewPremium(endTime));
-					post('premium', { id: res.user.id, endTime: endTime });
+					broadcast('premium', { id: res.user.id, endTime: endTime });
 					return;
 				}
 				var count = res.user["free_video"],
@@ -48,7 +50,7 @@
 					});
 				if (count || titles.length) {
 					show(viewLite(count));
-					post('trial?', { id: res.user.id, count: count, titles: titles });
+					broadcast('trial?', { id: res.user.id, count: count, titles: titles });
 					return;
 				}
 				throw 'need subscribe';
@@ -58,6 +60,15 @@
 				show(viewOffers(isAuthorized));
 				//todo? post('logout');
 			})
+	}
+
+	function broadcast(event, data) {
+		data = data || {};
+		data.event = event;
+		parent.postMessage(data, '*');
+		if (broadcastChannel) {
+			broadcastChannel.postMessage(data);
+		}
 	}
 
 	function lazyCaptcha() {
@@ -135,12 +146,6 @@
 					i.value = '';
 				})
 		}
-	}
-
-	function post(event, data) {
-		data = data || {};
-		data.event = event;
-		parent.postMessage(data, '*')
 	}
 
 	function show(html) {
@@ -244,7 +249,7 @@
 	}
 
 	function closeButton() {
-		return '<button onclick="post(\'close\')" ' +
+		return '<button onclick="broadcast(\'close\')" ' +
 			'class="btn btn-icon btn-close">\n' +
 			'<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 10 10">' +
 			'<path fill="#a1a1a1" d="M9 10L5 6l-4 4-1-1 4-4-4-4 1-1 4 4 4-4 1 1-4 4 4 4z"/></svg>' +
@@ -270,7 +275,7 @@
 			loadGoogleAuth2(),
 			fetch(API_AUTH + '/logout', { method: 'POST', credentials: 'include' })
 		]).then(function () {
-			post('logout');
+			broadcast('logout');
 			gapi.auth2.getAuthInstance().signOut().then(identity);
 		});
 	}
