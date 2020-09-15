@@ -61,6 +61,11 @@ var KEYPAY = {};
 		}
 	};
 
+	KEYPAY.initPlus = function (title) {
+		opts.title = title;
+		getAuth(title);
+	};
+
 	KEYPAY.isPaid = function (title, cb) {
 		callbacks.push(cb);
 		if (callbacks.length < 2) {
