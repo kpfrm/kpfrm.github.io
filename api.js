@@ -2,6 +2,7 @@ var KEYPAY = {};
 
 (function () {
 	var ORIGIN = 'https://kpfrm.github.io',
+		API_URL = 'https://kpembed.cc',
 		PROGRESS_STEP = 10,
 		MIN_PROGRESS_FOR_CREDIT = 50,
 		callbacks = [],
@@ -103,7 +104,7 @@ var KEYPAY = {};
 	function getSign() {
 		setTimeout(getSign, 1000 * 60 * 60);
 		return fetch(
-			'https://api.keypay.biz/stat/hash',
+			API_URL + '/stat/hash',
 			{ credentials: "include" }
 		).then(function (r) {
 			return r.json()
@@ -155,7 +156,7 @@ var KEYPAY = {};
 		clearTimeout(statusCheckTimer);
 		statusCheckTimer = setTimeout(getAuth, statusCheckInterval);
 		fetch(
-			'https://api.keypay.biz/auth/identity',
+			API_URL + '/auth/identity',
 			{ credentials: "include" }
 		).then(function (r) {
 			return r.json();
