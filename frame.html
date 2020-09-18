@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<title>keypay</title>
@@ -8,9 +8,18 @@
 	<meta content="830274248299-c267n2nrh44v55j7gdvo65g489tu8nj3.apps.googleusercontent.com"
 	      name="google-signin-client_id">
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
-	<link href="frame.css" rel="stylesheet" />
+	<link href="kpframe.min.css" rel="stylesheet" />
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178417218-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-178417218-1');
+	</script>
 </head>
-<body style="position:relative;height:56.25vw;background-color: #777">
+<body style="position:relative;height:56.25vw;">
 <div class="container">
 	<div class="container-inner"></div>
 </div>
@@ -169,20 +178,28 @@
 		return layout(
 			loginLink(isAuthorized) +
 			'<h2 class="title">Cмотри видео без рекламы на всех сайтах, где встречаешь логотип\n' +
-			'<svg xmlns="http://www.w3.org/2000/svg" style="margin-left: 10px" width="1.375em" height="1.375em" viewBox="0 0 26 26"><path d="M19.5 24.4c6.2-3.6 8.3-11.7 4.8-17.9-1.8-3.2-4.8-5.3-8-6.2.3 1.6.2 3.1-.3 4.6 2 .3 3.9 1.4 5.2 3.1l-4.1 2.4c-1-1-2.7-1.2-4-.4l-4.8 2.8 1.2 2.1-4 2.3L.8 8.7c-1.2 3.5-1 7.5 1 11s5.3 5.7 8.8 6.3l-4-7 4-2.3 1.2 2.1 4.8-2.8c1.3-.8 1.9-2.3 1.6-3.7l4.1-2.4c1.6 3.7.2 8.1-3.4 10.2l-4.8 2.8 1.7 3c1.4-.2 2.6-.8 3.7-1.5zM3.5 4.1l2.6 4.6 3-1.7c2.4-1.4 3.4-4.4 2.3-6.9-1.7.1-3.3.7-4.9 1.5-1.1.7-2.2 1.6-3 2.5z" fill="#284fe8"/></svg>\n' +
+			'<svg xmlns="http://www.w3.org/2000/svg" width="1.375em" height="1.375em" viewBox="0 0 26 26"><path d="M19.5 24.4c6.2-3.6 8.3-11.7 4.8-17.9-1.8-3.2-4.8-5.3-8-6.2.3 1.6.2 3.1-.3 4.6 2 .3 3.9 1.4 5.2 3.1l-4.1 2.4c-1-1-2.7-1.2-4-.4l-4.8 2.8 1.2 2.1-4 2.3L.8 8.7c-1.2 3.5-1 7.5 1 11s5.3 5.7 8.8 6.3l-4-7 4-2.3 1.2 2.1 4.8-2.8c1.3-.8 1.9-2.3 1.6-3.7l4.1-2.4c1.6 3.7.2 8.1-3.4 10.2l-4.8 2.8 1.7 3c1.4-.2 2.6-.8 3.7-1.5zM3.5 4.1l2.6 4.6 3-1.7c2.4-1.4 3.4-4.4 2.3-6.9-1.7.1-3.3.7-4.9 1.5-1.1.7-2.2 1.6-3 2.5z" fill="#284fe8"/></svg>\n' +
 			'</h2>\n' +
 			'<div class="offers">\n' +
-			'<div class="card card-offers">\n' +
+			'<div class="card">\n' +
+			'<div class="card-body text-center">\n' +
 			'<h2 class="card-title">Lite</h2>\n' +
-			'<p class="offer-price">Бесплатно</p>\n' +
-			'<p class="offer-footnote">К просмотру без рекламы доступно только одно видео в неделю на любом сайте сети.</p>\n' +
-			cabinetLink("btn btn-primary", "Подключить") +
+			'<p class="text-primary offers-price">Бесплатно</p>\n' +
+			'<p class="offers-footnote">К просмотру без рекламы доступно только одно видео в неделю на любом сайте сети.</p>\n' +
 			'</div>\n' +
-			'<div class="card card-offers">\n' +
+			'<div class="card-footer">\n' +
+			cabinetLink("btn btn-primary btn-block", "Подключить") +
+			'</div>\n' +
+			'</div>\n' +
+			'<div class="card">\n' +
+			'<div class="card-body text-center">\n' +
 			'<h2 class="card-title">Premium</h2>\n' +
-			'<p class="offer-price">$5/мес</p>\n' +
-			'<p class="offer-footnote">Отсутствие рекламы на всех сайтах сети без ограничений. Около 8 тысяч сайтов.</p>\n' +
-			cabinetLink("btn btn-primary", "Подключить") +
+			'<p class="text-primary offers-price">$5/мес</p>\n' +
+			'<p class="offers-footnote">Отсутствие рекламы на всех сайтах сети без ограничений. Около 8 тысяч сайтов.</p>\n' +
+			'</div>\n' +
+			'<div class="card-footer">\n' +
+			cabinetLink("btn btn-primary btn-block", "Подключить") +
+			'</div>\n' +
 			'</div>\n' +
 			'</div>'
 		);
@@ -210,12 +227,19 @@
 			renew.toLocaleDateString() +
 			' и может быть использован на протяжении 7 дней';
 		return layout(
-			'<div class="status">' +
-			'<div class="card card-view">' +
-			'<div class="text-center"><h1>Lite</h1><small class=" fw-medium text-primary">Бесплатно</small></div>' +
-			'<p class="card-footnote">' + status + '</p></div>' +
-			cabinetLink("btn btn-primary btn-block mb-10 mt-10", "Подключить Premium") +
+			'<div class="offers-lite">' +
+			'<div class="card mb-10">' +
+			'<div class="card-body text-center">' +
+			'<div><h1>Lite</h1><p class="offers-price text-primary">Бесплатно</p></div>' +
+			'<p class="card-footnote">' + status + '</p>' +
+			'</div>' +
+			'<div class="card-footer text-center">' +
+			cabinetLink("btn btn-primary btn-block", "Подключить Premium") +
+			'</div>' +
+			'</div>' +
+			'<div class="text-center">' +
 			reportButton('show(viewLite(' + count + '))') +
+			'</div>' +
 			'</div>'
 		)
 	}
@@ -257,11 +281,11 @@
 	}
 
 	function exitButton() {
-		return '<button class="btn btn-text text-primary btn-logout" onclick="logout()">Выйти</button>'
+		return '<button class="btn btn-sm text-primary btn-logout" onclick="logout()">Выйти</button>'
 	}
 
 	function reportButton(back) {
-		return '<button class="btn btn-text text-primary" onclick="show(viewReport(\'' + back + '\'))">' +
+		return '<button class="btn btn-sm text-primary" onclick="show(viewReport(\'' + back + '\'))">' +
 			'Сообщить о проблеме' +
 			'</button>'
 	}
@@ -313,42 +337,52 @@
 </script>
 
 <div id="auth_template" style="display: none;">
-	<h1 class="title">Авторизация с помощью</h1>
-	<div class="auth-cards">
-		<div class="card">
-			<h2 class="card-title">Аккаунт Google</h2>
-			<div class="card-body">
-				${signIn2}
+	<div class="container-content">
+		<h1 class="title">Авторизация с помощью</h1>
+		<div class="auth-cards">
+			<div class="card">
+				<div class="card-header">
+					<h2 class="card-title">Аккаунт Google</h2>
+				</div>
+				<div class="card-body">
+					${signIn2}
+				</div>
 			</div>
-		</div>
-		<div class="card">
-			<h2 class="card-title">Логин и пароль</h2>
-			<form onsubmit="login(arguments[0])">
-				<div class="form-group">
-					<input class="form-control" id="email" onfocus="lazyCaptcha()" placeholder="Email" type="email" />
+			<div class="card">
+				<div class="card-header">
+					<h2 class="card-title">Логин и пароль</h2>
 				</div>
-				<div class="form-group">
-					<input class="form-control" id="password" placeholder="Пароль" type="password" />
+				<div class="card-body">
+					<form onsubmit="login(arguments[0])">
+						<div class="form-group">
+							<input class="form-control" id="email" onfocus="lazyCaptcha()" placeholder="Email" type="email" />
+						</div>
+						<div class="form-group">
+							<input class="form-control" id="password" placeholder="Пароль" type="password" />
+						</div>
+						<div class="mt-30">
+							<button class="btn btn-primary btn-block" type="submit">Вход</button>
+						</div>
+					</form>
+					<div class="text-center mt-10">
+						<a class="btn btn-text text-primary" href="https://keypay.biz/sign-up" target="_blank">
+							Регистрация
+						</a>
+					</div>
 				</div>
-				<div class="mt-30">
-					<button class="btn btn-primary btn-block" type="submit">Вход</button>
-				</div>
-			</form>
-			<div class="text-center mt-10">
-				<a class="btn btn-text text-primary" href="https://keypay.biz/sign-up" target="_blank">
-					Регистрация
-				</a>
 			</div>
-		</div>
-		<div class="card">
-			<h2 class="card-title">По коду</h2>
-			<div class="card-body">
-				<input class="form-control form-code"
-				       id="quickAuth"
-				       name="code"
-				       oninput="quickLogin()"
-				       size="5"
-				       type="number" />
+			<div class="card">
+				<div class="card-header">
+					<h2 class="card-title">По коду</h2>
+				</div>
+				<div class="card-body">
+					<input class="form-control form-code"
+						   id="quickAuth"
+						   name="code"
+						   oninput="quickLogin()"
+						   size="5"
+						   type="number" />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -356,20 +390,24 @@
 
 <div id="feedback_template" style="display: none;">
 	<div class="card card-feedback">
-		<h1 class="card-title">Сообщить о проблеме</h1>
-		<form class="feedback mb-10" onsubmit="submitFeedback(arguments[0])">
-			<div class="form-group">
+		<div class="card-header">
+			<h1 class="card-title">Сообщить о проблеме</h1>
+		</div>
+		<div class="card-body">
+			<form class="feedback mb-10" onsubmit="submitFeedback(arguments[0])">
+				<div class="form-group">
                 <textarea class="form-control"
-                          id="feedback"
-                          minlength="10"
-                          placeholder="Описание проблемы"
-                          required
-                          rows="4"></textarea>
+						  id="feedback"
+						  minlength="10"
+						  placeholder="Описание проблемы"
+						  required
+						  rows="4"></textarea>
+				</div>
+				<button class="btn btn-primary btn-block">Отправить</button>
+			</form>
+			<div class="text-center">
+				<button class="btn btn-text text-primary" onclick="${back}">Отмена</button>
 			</div>
-			<button class="btn btn-primary btn-block">Отправить</button>
-		</form>
-		<div class="text-center">
-			<button class="btn btn-text text-primary" onclick="${back}">Отмена</button>
 		</div>
 	</div>
 </div>
