@@ -234,7 +234,7 @@ var KEYPAY = {};
 		appendStyles();
 		var b = document.createElement('button');
 		b.className = 'keypay-btn';
-		b.innerHTML = '<span class="close"><svg xmlns="http://www.w3.org/2000/svg" width=".75em" height=".75em" viewBox="0 0 16 16"><path fill="#a1a1a1" d="M14.4 16L8 9.6 1.6 16 0 14.4 6.4 8 0 1.6 1.6 0 8 6.4 14.4 0 16 1.6 9.6 8l6.4 6.4z"/></svg></span>Premium <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">\n' +
+		b.innerHTML = 'Premium <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">\n' +
 			'<path d="M13.5 16.9c4.3-2.5 5.8-8.1 3.3-12.4C15.5 2.3 13.5.8 11.3.2c.2 1.1.2 2.2-.1 3.2 1.4.2 2.7 1 3.6 2.2L12 7.3c-.9-.7-2-.9-2.9-.4l-3.3 2 .8 1.5L3.8 12 .5 6c-.8 2.4-.7 5.2.7 7.6C2.6 16 4.9 17.5 7.4 18l-2.8-4.9 2.8-1.6.8 1.5 3.3-1.9c.9-.5 1.3-1.6 1.1-2.6l2.8-1.7c1.1 2.6.1 5.6-2.3 7.1l-3.3 1.9 1.2 2.1c.9-.2 1.7-.5 2.5-1zM2.4 2.8L4.2 6l2.1-1.2C8 3.8 8.6 1.7 7.8 0 6.7.1 5.6.5 4.5 1.1c-.8.5-1.5 1.1-2.1 1.7z" fill="#3b63ff"/>\n' +
 			'</svg>';
 		b.onclick = function () {
