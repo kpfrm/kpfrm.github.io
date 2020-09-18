@@ -259,7 +259,7 @@ var KEYPAY = {};
 	function appendStyles() {
 		var style = document.head.querySelector('style') || document.createElement('style');
 		style.innerHTML += '.keypay-btn{font-family:Arial,Helvetica,sans-serif;display:inline-flex;justify-content:flex-end;align-items:center;font-weight:500;text-align:center;vertical-align:middle;touch-action:manipulation;cursor:pointer;background-image:none;border:1px solid transparent;white-space:normal;line-height:1.5;user-select:none;outline:none;position:absolute;top:2px;right:100px;padding:4px;max-width:28px;font-size:12px;overflow:hidden;color:#3B63FF;background-color:#fff;border-radius:0 0 5px 5px;transition:max-width .25s ease-in-out}' +
-			'.keypay-btn svg{flex-shrink:0;margin-left:8px} .keypay-btn.active{width:auto} .keypay-btn.active .close{display:inline-block}' +
+			'.keypay-btn svg{flex-shrink:0;margin-left:8px} .keypay-btn.active{width:auto;max-width:none} .keypay-btn.active .close{display:inline-block}' +
 			'.keypay-btn:hover{max-width:80%} .keypay-btn .close{display:none;flex-shrink:0;cursor:pointer;margin-right:8px}';
 		if (!style.parentNode) document.head.appendChild(style);
 	}
