@@ -7,8 +7,12 @@
 
 .container-inner
   height: 100%
-  padding: 2.625em 1.25em .5em 1.25em
+  padding: 65px 20px 15px 20px
   background-color: #F8F8F8
+
+  @include media-breakpoint-up(sm)
+    padding-left: 3.125rem
+    padding-right: 3.125rem
 
 .container-content
   display: flex
@@ -20,10 +24,13 @@
     justify-content: center
 
 .title
-  font-size: 1.375em
+  font-size: 1rem
   font-weight: 500
   text-align: center
   margin-bottom: 1em
+
+  @include media-breakpoint-up(md)
+    font-size: 1.3125rem
 
   svg
     margin-left: 10px

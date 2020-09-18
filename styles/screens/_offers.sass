@@ -4,33 +4,49 @@
     justify-content: center
 
     .card
-      width: 370px
-      margin: 0 1rem
+      width: 25%
+      min-width: 270px
+      margin: 0 .5rem
+
+  @include media-breakpoint-down(sm)
+    .card
+      max-width: 340px
+      margin-left: auto
+      margin-right: auto
 
   &-price
     margin: 1.75rem 0
-    font-weight: 500
-    font-size: 1.125em
+    font-weight: 600
+    font-size: 1.125rem
 
   &-footnote
     line-height: 2
 
+    @include media-breakpoint-up(md)
+      font-size: .875rem
+      line-height: 1.75
+
 .offers-lite
-  width: 100%
-  max-width: 540px
   margin: auto
+
+  @include media-breakpoint-up(md)
+    h1
+      font-size: 2rem
+      margin-bottom: .375rem
 
   .card-body
     @include media-breakpoint-up(md)
       display: flex
       flex-wrap: nowrap
       align-items: center
+      padding: 2.25rem 3.125rem
 
       .card-footnote
         flex-grow: 1
         text-align: left
         padding-left: 2rem
+        line-height: 2.25
 
       .offers-price
         margin: 0
-        font-size: .875em
+        font-size: 1rem
