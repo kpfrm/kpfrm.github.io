@@ -13,9 +13,12 @@
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178417218-1"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
 
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+
+		gtag('js', new Date());
 		gtag('config', 'UA-178417218-1');
 	</script>
 </head>
@@ -121,11 +124,13 @@
 		}).then(function (/**KPAuthResponse*/ r) {
 			identity();
 			localStorage.setItem('auth', r.token);
+			stats('login', { method: 'Google' })
 		})
 	}
 
 	function login(e) {
 		e.preventDefault();
+		stats('login', { method: 'email' });
 		grecaptcha.execute().then(function (captcha) {
 			return postJson(API_AUTH + '/login', {
 				email: document.getElementById('email').value,
@@ -159,6 +164,10 @@
 
 	function show(html) {
 		document.body.querySelector('.container-inner').innerHTML = html;
+	}
+
+	function stats(name, params) {
+		gtag('event', name, params)
 	}
 
 	function viewAuth() {
@@ -260,18 +269,30 @@
 	}
 
 	function cabinetLink(classes, text) {
-		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" target="_blank">' + text + '</a>'
+		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'select_content\', {items: \'' +
+			'text' +
+			'\'})" target="_blank">' + text + '</a>'
+	}
+
+	function loginLinkHandler() {
+		stats('screen_view', 'Авторизация');
+		show(viewAuth())
 	}
 
 	function loginLink(isAuthorized) {
 		if (isAuthorized) return '';
-		return '<button class="btn btn-primary btn-sm btn-login" onclick="show(viewAuth())">' +
+		return '<button class="btn btn-primary btn-sm btn-login" onclick="loginLinkHandler()">' +
 			'Войти' +
 			'</button>'
 	}
 
+	function closeHandler() {
+		stats('screen_view', { screen_name: 'close' });
+		broadcast('close');
+	}
+
 	function closeButton() {
-		return '<button onclick="broadcast(\'close\')" ' +
+		return '<button onclick="closeHandler()" ' +
 			'class="btn btn-icon btn-close">\n' +
 			'<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 10 10">' +
 			'<path fill="#a1a1a1" d="M9 10L5 6l-4 4-1-1 4-4-4-4 1-1 4 4 4-4 1 1-4 4 4 4z"/></svg>' +
@@ -338,7 +359,8 @@
 	<div class="container-content">
 		<button class="btn btn-icon btn-back" onclick="show(viewOffers())">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 16">
-				<path fill="#a1a1a1" d="M3.5 8l6-6c.2-.2.3-.4.3-.6 0-.2-.1-.5-.3-.6L8.9.3C8.8.1 8.5 0 8.3 0c-.2 0-.5.1-.6.3L.6 7.4c-.2.1-.3.4-.3.6 0 .2.1.5.3.6l7.1 7.1c.1.2.4.3.6.3.2 0 .5-.1.6-.3l.5-.5c.3-.3.3-.9 0-1.2L3.5 8z"/>
+				<path fill="#a1a1a1"
+				      d="M3.5 8l6-6c.2-.2.3-.4.3-.6 0-.2-.1-.5-.3-.6L8.9.3C8.8.1 8.5 0 8.3 0c-.2 0-.5.1-.6.3L.6 7.4c-.2.1-.3.4-.3.6 0 .2.1.5.3.6l7.1 7.1c.1.2.4.3.6.3.2 0 .5-.1.6-.3l.5-.5c.3-.3.3-.9 0-1.2L3.5 8z" />
 			</svg>
 		</button>
 		<h1 class="title">Авторизация с помощью</h1>
@@ -358,7 +380,8 @@
 				<div class="card-body">
 					<form onsubmit="login(arguments[0])">
 						<div class="form-group">
-							<input class="form-control" id="email" onfocus="lazyCaptcha()" placeholder="Email" type="email" />
+							<input class="form-control" id="email" onfocus="lazyCaptcha()" placeholder="Email"
+							       type="email" />
 						</div>
 						<div class="form-group">
 							<input class="form-control" id="password" placeholder="Пароль" type="password" />
@@ -368,7 +391,10 @@
 						</div>
 					</form>
 					<div class="text-center mt-10">
-						<a class="btn btn-text text-primary fw-medium" href="https://keypay.biz/sign-up" target="_blank">
+						<a class="btn btn-text text-primary fw-medium"
+						   onclick="stats('screen_view', {screen_name: 'Регистрация'})"
+						   href="https://keypay.biz/sign-up"
+						   target="_blank">
 							Регистрация
 						</a>
 					</div>
@@ -380,11 +406,11 @@
 				</div>
 				<div class="card-body">
 					<input class="form-control form-code"
-						   id="quickAuth"
-						   name="code"
-						   oninput="quickLogin()"
-						   size="5"
-						   type="number" />
+					       id="quickAuth"
+					       name="code"
+					       oninput="quickLogin()"
+					       size="5"
+					       type="number" />
 				</div>
 			</div>
 		</div>
@@ -400,11 +426,11 @@
 			<form class="feedback mb-10" onsubmit="submitFeedback(arguments[0])">
 				<div class="form-group">
                 <textarea class="form-control"
-						  id="feedback"
-						  minlength="10"
-						  placeholder="Описание проблемы"
-						  required
-						  rows="4"></textarea>
+                          id="feedback"
+                          minlength="10"
+                          placeholder="Описание проблемы"
+                          required
+                          rows="4"></textarea>
 				</div>
 				<button class="btn btn-primary btn-block">Отправить</button>
 			</form>
