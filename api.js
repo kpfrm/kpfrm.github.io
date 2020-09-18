@@ -234,7 +234,7 @@ var KEYPAY = {};
 		appendStyles();
 		var b = document.createElement('button');
 		b.className = 'keypay-btn';
-		b.innerHTML = 'Premium <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">\n' +
+		b.innerHTML = '<span class="close"><svg xmlns="http://www.w3.org/2000/svg" width=".75em" height=".75em" viewBox="0 0 16 16"><path fill="#a1a1a1" d="M14.4 16L8 9.6 1.6 16 0 14.4 6.4 8 0 1.6 1.6 0 8 6.4 14.4 0 16 1.6 9.6 8l6.4 6.4z"/></svg></span> Premium <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">\n' +
 			'<path d="M13.5 16.9c4.3-2.5 5.8-8.1 3.3-12.4C15.5 2.3 13.5.8 11.3.2c.2 1.1.2 2.2-.1 3.2 1.4.2 2.7 1 3.6 2.2L12 7.3c-.9-.7-2-.9-2.9-.4l-3.3 2 .8 1.5L3.8 12 .5 6c-.8 2.4-.7 5.2.7 7.6C2.6 16 4.9 17.5 7.4 18l-2.8-4.9 2.8-1.6.8 1.5 3.3-1.9c.9-.5 1.3-1.6 1.1-2.6l2.8-1.7c1.1 2.6.1 5.6-2.3 7.1l-3.3 1.9 1.2 2.1c.9-.2 1.7-.5 2.5-1zM2.4 2.8L4.2 6l2.1-1.2C8 3.8 8.6 1.7 7.8 0 6.7.1 5.6.5 4.5 1.1c-.8.5-1.5 1.1-2.1 1.7z" fill="#3b63ff"/>\n' +
 			'</svg>';
 		b.onclick = function () {
@@ -259,8 +259,8 @@ var KEYPAY = {};
 	function appendStyles() {
 		var style = document.head.querySelector('style') || document.createElement('style');
 		style.innerHTML += '.keypay-btn{font-family:Arial,Helvetica,sans-serif;display:inline-flex;justify-content:flex-end;align-items:center;font-weight:500;text-align:center;vertical-align:middle;touch-action:manipulation;cursor:pointer;background-image:none;border:1px solid transparent;white-space:normal;line-height:1.5;user-select:none;outline:none;position:absolute;top:2px;right:100px;padding:4px;max-width:28px;font-size:12px;overflow:hidden;color:#3B63FF;background-color:#fff;border-radius:0 0 5px 5px;transition:max-width .25s ease-in-out}' +
-			'.keypay-btn svg{flex-shrink:0;margin-left:8px}' +
-			'.keypay-btn:hover{max-width:80%} .keypay-btn .close{display:inline-block;flex-shrink:0;cursor:pointer;margin-right:8px}';
+			'.keypay-btn svg{flex-shrink:0;margin-left:8px} .keypay-btn.active{width:auto} .keypay-btn.active .close{display:inline-block}' +
+			'.keypay-btn:hover{max-width:80%} .keypay-btn .close{display:none;flex-shrink:0;cursor:pointer;margin-right:8px}';
 		if (!style.parentNode) document.head.appendChild(style);
 	}
 })();
