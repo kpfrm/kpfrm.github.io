@@ -1,41 +1,41 @@
 .card
   display: flex
   flex-direction: column
+  width: 100%
   background-color: #fff
 
   + .card
     margin-top: 2rem
 
 .card-header
-  padding: 1.5em 2em 0 2em
+  padding: 2rem 2rem 0 2rem
 
 .card-body
   flex-grow: 1
-  padding: 1.5em 2em
+  padding: 2rem
 
 .card-title
-  font-size: 1.375em
+  font-size: 1.375rem
   font-weight: 700
   text-align: center
   margin: 0
 
-  @include media-breakpoint-up(md)
-    font-size: 1em
-    font-weight: 500
-
 .card-feedback
   width: 100%
-  max-width: 340px
+  max-width: 360px
   margin: auto
 
 .auth-cards
   display: flex
   flex-wrap: wrap
+  justify-content: center
 
   .card
+    max-width: 300px
+    margin: .5rem
+
     @include media-breakpoint-up(md)
       width: 45%
-      margin: 1rem auto
 
     @include media-breakpoint-up(lg)
-      width: calc(33.333% - 2rem)
+      width: calc(33.333% - 1rem)
