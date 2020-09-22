@@ -216,10 +216,18 @@
 
 	function viewPremium(until) {
 		return layout(
-			'<h1>Premium - <span class="text-primary">$5/мес</span></h1>' +
-			'<p class="text-secondary">Оплачено до ' + new Date(until).toLocaleDateString() + '</p>' +
+			'<div class="offers-lite">' +
+			'<div class="card mb-10">' +
+			'<div class="card-body text-center">' +
+			'<div><h1>Premium</h1><p class="offers-price text-primary">$5/мес</p></div>' +
+			'<p class="card-footnote">Оплачено до ' + new Date(until).toLocaleDateString() + '</p>' +
+			'</div>' +
+			'</div>' +
 			cabinetLink("btn btn-primary mb-30 mt-20", "Продлить") +
-			reportButton('show(viewPremium(' + until + '))')
+			'<div class="text-center mt-10">' +
+			reportButton('show(viewPremium(' + until + '))') +
+			'</div>' +
+			'</div>'
 		)
 	}
 
