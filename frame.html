@@ -269,13 +269,13 @@
 	}
 
 	function cabinetLink(classes, text) {
-		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'select_content\', {items: \'' +
+		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'select_content\', {content_type: \'' +
 			'text' +
 			'\'})" target="_blank">' + text + '</a>'
 	}
 
 	function loginLinkHandler() {
-		stats('screen_view', 'Авторизация');
+		stats('screen_view', { screen_name: 'Авторизация' });
 		show(viewAuth())
 	}
 
