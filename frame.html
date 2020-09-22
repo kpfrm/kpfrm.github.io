@@ -124,13 +124,13 @@
 		}).then(function (/**KPAuthResponse*/ r) {
 			identity();
 			localStorage.setItem('auth', r.token);
-			stats('login-google', { method: 'Google' })
+			stats('login-google')
 		})
 	}
 
 	function login(e) {
 		e.preventDefault();
-		stats('login-email', { method: 'email' });
+		stats('login-email');
 		grecaptcha.execute().then(function (captcha) {
 			return postJson(API_AUTH + '/login', {
 				email: document.getElementById('email').value,
@@ -269,13 +269,13 @@
 	}
 
 	function cabinetLink(classes, text) {
-		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'select_content\', {content_type: \'' +
+		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'' +
 			'text' +
-			'\'})" target="_blank">' + text + '</a>'
+			'\')" target="_blank">' + text + '</a>'
 	}
 
 	function loginLinkHandler() {
-		stats('screen_view', { screen_name: 'Авторизация' });
+		stats('open-authorization');
 		show(viewAuth())
 	}
 
@@ -287,7 +287,7 @@
 	}
 
 	function closeHandler() {
-		stats('screen_view', { screen_name: 'close' });
+		stats('close-frame');
 		broadcast('close');
 	}
 
@@ -392,7 +392,7 @@
 					</form>
 					<div class="text-center mt-10">
 						<a class="btn btn-text text-primary fw-medium"
-						   onclick="stats('screen_view', {screen_name: 'Регистрация'})"
+						   onclick="stats('registration')"
 						   href="https://keypay.biz/sign-up"
 						   target="_blank">
 							Регистрация
