@@ -124,13 +124,13 @@
 		}).then(function (/**KPAuthResponse*/ r) {
 			identity();
 			localStorage.setItem('auth', r.token);
-			stats('login', { method: 'Google' })
+			stats('login-google', { method: 'Google' })
 		})
 	}
 
 	function login(e) {
 		e.preventDefault();
-		stats('login', { method: 'email' });
+		stats('login-email', { method: 'email' });
 		grecaptcha.execute().then(function (captcha) {
 			return postJson(API_AUTH + '/login', {
 				email: document.getElementById('email').value,
