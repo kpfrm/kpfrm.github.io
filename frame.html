@@ -197,7 +197,7 @@
 			'<p class="offers-footnote">К просмотру без рекламы доступно только одно видео в неделю на любом сайте сети.</p>\n' +
 			'</div>\n' +
 			'<div class="card-footer">\n' +
-			cabinetLink("btn btn-primary btn-block", "Подключить") +
+			cabinetLink("btn btn-primary btn-block", "Подключить", 'connect-lite') +
 			'</div>\n' +
 			'</div>\n' +
 			'<div class="card">\n' +
@@ -207,7 +207,7 @@
 			'<p class="offers-footnote">Отсутствие рекламы на всех сайтах сети без ограничений. Около 8 тысяч сайтов.</p>\n' +
 			'</div>\n' +
 			'<div class="card-footer">\n' +
-			cabinetLink("btn btn-primary btn-block", "Подключить") +
+			cabinetLink("btn btn-primary btn-block", "Подключить", 'connect-premium') +
 			'</div>\n' +
 			'</div>\n' +
 			'</div>'
@@ -223,7 +223,7 @@
 			'<p class="card-footnote">Оплачено до ' + new Date(until).toLocaleDateString() + '</p>' +
 			'</div>' +
 			'</div>' +
-			cabinetLink("btn btn-primary btn-block", "Продлить") +
+			cabinetLink("btn btn-primary btn-block", "Продлить", 'continue-premium') +
 			'<div class="text-center mt-10">' +
 			reportButton('show(viewPremium(' + until + '))') +
 			'</div>' +
@@ -251,7 +251,7 @@
 			'<p class="card-footnote">' + status + '</p>' +
 			'</div>' +
 			'</div>' +
-			cabinetLink("btn btn-primary btn-block", "Подключить Premium") +
+			cabinetLink("btn btn-primary btn-block", "Подключить Premium", 'connect-premium') +
 			'<div class="text-center mt-10">' +
 			reportButton('show(viewLite(' + count + '))') +
 			'</div>' +
@@ -276,9 +276,9 @@
 			'<div class="container-content">' + content + '</div>'
 	}
 
-	function cabinetLink(classes, text) {
+	function cabinetLink(classes, text, eventName) {
 		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe"' +
-			'onclick="stats(\'' + text + '\')" target="_blank">' + text + '</a>'
+			'onclick="stats(\'' + eventName + '\')" target="_blank">' + text + '</a>'
 	}
 
 	function loginLinkHandler() {
