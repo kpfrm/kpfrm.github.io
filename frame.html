@@ -223,7 +223,7 @@
 			'<p class="card-footnote">Оплачено до ' + new Date(until).toLocaleDateString() + '</p>' +
 			'</div>' +
 			'</div>' +
-			cabinetLink("btn btn-primary mb-30 mt-20", "Продлить") +
+			cabinetLink("btn btn-primary btn-block", "Продлить") +
 			'<div class="text-center mt-10">' +
 			reportButton('show(viewPremium(' + until + '))') +
 			'</div>' +
@@ -277,9 +277,8 @@
 	}
 
 	function cabinetLink(classes, text) {
-		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe" onclick="stats(\'' +
-			'text' +
-			'\')" target="_blank">' + text + '</a>'
+		return '<a class="' + classes + '" href="https://keypay.biz/cabinet/subscribe"' +
+			'onclick="stats(\'' + text + '\')" target="_blank">' + text + '</a>'
 	}
 
 	function loginLinkHandler() {
