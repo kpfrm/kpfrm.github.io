@@ -16,3 +16,6 @@ ij_javascript_spaces_within_object_literal_braces = true
 [*.md]
 max_line_length = 0
 trim_trailing_whitespace = false
+
+[*.sass]
+indent_style = space
